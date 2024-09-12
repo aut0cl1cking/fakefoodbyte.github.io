@@ -7,18 +7,19 @@
 
 /* Body Background */
 body {
-    background: linear-gradient(to bottom, #0884d4, #78fcfc);
-    background-attachment: fixed;
-    font-family: 'Arial', sans-serif;
-    color: white;
-    font-size: 16px;
+    background: linear-gradient(to bottom, #0884d4, #78fcfc); /* Gradient background */
+    background-attachment: fixed; /* Fixes the background in place */
+    font-family: 'Roboto', sans-serif; /* Sets the custom font */
+    color: white; /* Sets the text color */
+    font-size: 16px; /* Sets the base font size */
+    height: 100vh;
 }
 
 /* Navigation Bar */
 nav {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
+    justify-content: space-between;
     padding: 20px 60px;
     background: transparent;
     position: fixed;
@@ -27,49 +28,138 @@ nav {
     z-index: 1000;
 }
 
+/* Logo Styling */
+nav .logo {
+    max-height: 50px; /* Limits the logo height */
+    margin-right: 20px; /* Adds space between the logo and the nav items */
+}
+
+/* Navigation List */
 nav ul {
+    display: flex; /* Uses flexbox for horizontal layout */
+    list-style: none; /* Removes bullet points */
+    margin-left: auto; /* Pushes navigation items to the right */
+    position: relative; /* 设置相对定位，使得移动效果更加顺滑 */
+    transition: transform 0.5s ease;
+    z-index: 1; /* 确保导航项在按钮后面 */
+}
+
+/* Navigation Items */
+nav ul li {
+    margin-right: 40px; /* Adds space between navigation items */
+}
+
+/* Navigation Links */
+nav a {
+    color: #fff; /* White text color */
+    font-size: 1.2em; /* Font size of navigation links */
+    text-decoration: none; /* Removes underline from links */
+}
+
+.logo {
+    margin-right: 20px;
+}
+
+.nav-items {
     display: flex;
     list-style: none;
+    margin-left: auto;
+    transition: transform 0.5s ease;
+    position: relative; /* For smooth transformations */
 }
 
-nav ul li {
-    margin-right: 40px; /* Reduce margin between items */
+.nav-items li {
+    margin-right: 20px;
 }
 
-nav a {
-    color: #fff;
-    font-size: 1.2em;
-    text-decoration: none;
-}
-
+/* Account Button Style (Right Aligned) */
 .account-btn {
     background-color: #00aaff;
+    color: white;
     padding: 10px 20px;
     border-radius: 5px;
-    color: white;
     font-size: 1em;
     text-decoration: none;
     font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.5s ease;
+    margin-left: 40px;
+    z-index: 10; /* 保证按钮在前面 */
+    position: relative; /* 确保按钮在最前方 */
 }
 
-/* Main Content Layout */
+.account-btn:hover {
+    background-color: #0077cc;
+}
+
+/* Hover Effect: Move the nav items to the right when hovering over account button */
+.account-btn:hover ~ .nav-items {
+    transform: translateX(100px); /* Moves nav items 100px to the right */
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Main Content Section */
 section.main-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 100px; /* Space below nav */
-    padding-left: 80px; /* Aligns content to the left */
-    padding-right: 80px;
-    min-height: 100vh;
+    display: flex; /* Flexbox layout for text and image */
+    justify-content: space-between; /* Space between text and image */
+    align-items: center; /* Vertically align the content */
+    height: 100vh; /* Full viewport height */
+    padding: 0 80px; /* Horizontal padding */
 }
 
-/* Text Content Animation (Left to Right) */
+/* Text Content */
 .text-content {
-    opacity: 0;
-    transform: translateX(-100px); /* Starts from the left */
-    animation: fadeInLeft 1.5s ease forwards; /* 1.5 second animation */
+    max-width: 600px; /* Limits the text content width */
+    animation: fadeInLeft 1s ease-in-out; /* Fade in animation */
 }
 
+/* Heading Styling */
+.text-content h1 {
+    font-size: 4em; /* Larger heading */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+/* Paragraph Styling */
+.text-content p {
+    font-size: 1.5em; /* Larger text */
+    margin-top: 15px;
+    line-height: 1.6; /* Spacing between lines */
+}
+
+/* Buy Button */
+.buy-btn-container {
+    margin-top: 30px; /* Adds space above the button */
+}
+
+.buy-btn {
+    padding: 15px 35px; /* Adds padding inside the button */
+    background-color: #00aaff; /* Blue background */
+    color: white; /* White text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Removes underline from the link */
+    font-size: 1.2em; /* Font size of the button text */
+    font-weight: bold; /* Makes text bold */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.buy-btn:hover {
+    background-color: #0077cc; /* Darken the button on hover */
+}
+
+/* Image Styles */
+.image-content {
+    max-width: 700px; /* Limits the image width */
+}
+
+.foodbyte-image {
+    width: 100%;
+    transform: scale(0.9) perspective(500px) rotateY(-10deg) rotateX(-0.5deg) rotateZ(1.5deg); 
+    filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.5));
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Shadow for depth effect */
+}
+
+/* Keyframes for Text Animation */
 @keyframes fadeInLeft {
     0% {
         opacity: 0;
@@ -81,80 +171,173 @@ section.main-content {
     }
 }
 
-/* Image Content Animation (Right to Left) */
-.fade-in-right {
-    opacity: 0;
-    transform: translateX(100px); /* Starts from the right */
-    animation: fadeInRight 1.5s ease forwards; /* 1.5 second animation */
-    animation-delay: 0.3s; /* Image fades in after a slight delay */
-}
-
-@keyframes fadeInRight {
-    0% {
-        opacity: 0;
-        transform: translateX(100px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* Buy Button */
-.buy-btn-container {
-    margin-top: 30px;
-}
-
-.buy-btn {
-    padding: 12px 30px;
-    background-color: #00aaff; /* Full blue background */
-    color: white; /* White text color */
-    border: 2px solid #00aaff; /* Blue border matching the background */
-    border-radius: 5px; /* Optional: rounded corners */
-    text-decoration: none;
-    font-size: 1.1em;
-    font-weight: bold;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
-}
-
-.buy-btn:hover {
-    background-color: white; /* Changes to white on hover */
-    color: #00aaff; /* Blue text on hover */
-    border: 2px solid #00aaff; /* Blue border remains on hover */
-}
-/* Image Styles */
-.image-content img {
-    max-width: 700px; /* Adjust image size */
-    border-radius: 10px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow for effect */
-}
-
 /* Media Query for Responsive Design */
 @media (max-width: 768px) {
     section.main-content {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: column; /* Stacks content vertically */
+        text-align: center; /* Centers text */
     }
 
     .text-content {
-        max-width: 100%;
+        max-width: 100%; /* Ensures full width */
     }
 
     .image-content img {
-        max-width: 100%;
-        margin-top: 20px;
+        max-width: 100%; /* Makes image responsive */
+        margin-top: 20px; /* Adds space above the image */
     }
 
     nav ul {
-        flex-direction: column;
+        flex-direction: column; /* Stacks nav items vertically */
     }
 
     nav ul li {
-        margin-right: 0;
-        margin-bottom: 20px;
+        margin-right: 0; /* Removes right margin */
+        margin-bottom: 20px; /* Adds space below each item */
     }
 
     .account-btn {
-        margin-top: 20px;
+        margin-top: 20px; /* Adds space above the button */
     }
 }
+
+/* Form Container */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full page height */
+}
+
+/* Form Styling */
+.account-form {
+    background-color: #fff; /* White background for the form */
+    padding: 40px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 400px; /* Limits the form width */
+    width: 100%; /* Makes form responsive */
+}
+
+/* Form Heading */
+.account-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: #333;
+}
+
+/* Form Labels */
+.account-form label {
+    font-size: 1em;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Form Inputs */
+.account-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Submit Button */
+.account-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0077cc; /* Green background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.account-form button:hover {
+    background-color: #0077cc; /* Darker green on hover */
+}
+
+/* Top Options Style */
+.top-options {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.top-option {
+    display: inline-block;
+    background-color: white;
+    color: black;
+    padding: 8px 24px; /* 增加左右内边距，减少上下内边距，使按钮更长 */
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+    font-weight: bold;
+    width: auto; /* 自适应宽度 */
+    height: auto; /* 自适应高度 */
+    line-height: 1.5; /* 行高与字体大小匹配 */
+}
+
+.top-option:hover {
+    background-color: #00aaff;
+    color: white;
+}
+
+
+
+/* Link styling in the login form */
+.create-account-link {
+    color: #00aaff; /* Blue color for the link */
+    text-decoration: none; /* Removes underline */
+    font-weight: bold; /* Makes the text bold */
+}
+
+.create-account-link:hover {
+    color: #0077cc; /* Darker blue on hover */
+}
+/* User Dashboard Styling */
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #0884d4, #78fcfc); /* Use the same background as the other pages */
+    color: white; /* White text color */
+    text-align: center;
+}
+
+.dashboard h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.dashboard p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.dashboard button {
+    padding: 10px 20px;
+    background-color: #0077cc; /* Button background color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dashboard button:hover {
+    background-color: #005fa3; /* Darker button color on hover */
+}
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create FoodByte Account</title>
+    <link rel="stylesheet" href="style.css"> 
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+</head>
+<body>
+    <div class="top-options">
+        <a href="index.html" class="top-option">Home</a>
+        <a href="login.html" class="top-option">Login</a>
+        <a href="createA.html" class="top-option">Create Account</a>
+    </div>
+
+    <div class="form-container">
+        <form id="accountForm" class="account-form" onsubmit="submitForm(); return false;">
+            <h2>Create FoodByte Account</h2>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="用户名" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="密码" required>
+            
+            <label for="password-check">Password check</label>
+            <input type="password" id="password-check" name="password-check" placeholder="再次输入密码" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="邮箱" required>
+            
+            <label for="key">Key</label>
+            <input type="text" id="key" name="key" placeholder="激活码">
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Firebase Initialization and Authentication Script -->
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCqWtqx0JcqglgdPeNAiFn02HGVitCAs3E",
+        authDomain: "fakefoodbyte.firebaseapp.com",
+        projectId: "fakefoodbyte",
+        storageBucket: "fakefoodbyte.appspot.com",
+        messagingSenderId: "407497392312",
+        appId: "1:407497392312:web:a9025bb965b7d1e4e3b44d",
+        measurementId: "G-LEEPELKR7L"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // Initialize Firebase Authentication
+      const auth = firebase.auth();
+
+      // Form submission handler
+      function submitForm() {
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const passwordCheck = document.getElementById('password-check').value;
+
+        if (password !== passwordCheck) {
+          alert('Passwords do not match');
+          return;
+        }
+
+        // Create user with email and password
+        auth.createUserWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            alert('Account created successfully for ' + username);
+            // Redirect to another page if needed
+            window.location.href = 'index.html';
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+      }
+    </script>
+</body>
+</html>

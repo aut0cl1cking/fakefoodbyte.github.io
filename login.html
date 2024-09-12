@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to FoodByte</title>
+    <link rel="stylesheet" href="style.css"> 
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+</head>
+<body>
+    <div class="top-options">
+        <a href="index.html" class="top-option">Home</a>
+        <a href="login.html" class="top-option">Login</a>
+        <a href="createA.html" class="top-option">Create Account</a>
+    </div>
+
+    <div class="form-container">
+        <form id="loginForm" class="account-form" onsubmit="loginForm(); return false;">
+            <h2>Login to FoodByte</h2>
+            <label for="login-email">Email</label>
+            <input type="text" id="login-email" name="email" placeholder="邮箱" required>
+            
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" name="password" placeholder="密码" required>
+            
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCqWtqx0JcqglgdPeNAiFn02HGVitCAs3E",
+        authDomain: "fakefoodbyte.firebaseapp.com",
+        projectId: "fakefoodbyte",
+        storageBucket: "fakefoodbyte.appspot.com",
+        messagingSenderId: "407497392312",
+        appId: "1:407497392312:web:a9025bb965b7d1e4e3b44d",
+        measurementId: "G-LEEPELKR7L"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // Login Function
+      function loginForm() {
+        var email = document.getElementById('login-email').value;
+        var password = document.getElementById('login-password').value;
+
+        firebase.auth().signInWithEmailAndPassword(email, password)
+          .then(() => {
+            // Redirect to user.html on successful login
+            window.location.href = 'user.html';
+          })
+          .catch((error) => {
+            // Show error message
+            alert('Login failed: ' + error.message);
+          });
+      }
+    </script>
+</body>
+</html>
