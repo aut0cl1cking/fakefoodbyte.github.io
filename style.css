@@ -1,0 +1,160 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Background */
+body {
+    background: linear-gradient(to bottom, #0884d4, #78fcfc);
+    background-attachment: fixed;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    font-size: 16px;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 60px;
+    background: transparent;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-right: 40px; /* Reduce margin between items */
+}
+
+nav a {
+    color: #fff;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+.account-btn {
+    background-color: #00aaff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 1em;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Main Content Layout */
+section.main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 100px; /* Space below nav */
+    padding-left: 80px; /* Aligns content to the left */
+    padding-right: 80px;
+    min-height: 100vh;
+}
+
+/* Text Content Animation (Left to Right) */
+.text-content {
+    opacity: 0;
+    transform: translateX(-100px); /* Starts from the left */
+    animation: fadeInLeft 1.5s ease forwards; /* 1.5 second animation */
+}
+
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Image Content Animation (Right to Left) */
+.fade-in-right {
+    opacity: 0;
+    transform: translateX(100px); /* Starts from the right */
+    animation: fadeInRight 1.5s ease forwards; /* 1.5 second animation */
+    animation-delay: 0.3s; /* Image fades in after a slight delay */
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Buy Button */
+.buy-btn-container {
+    margin-top: 30px;
+}
+
+.buy-btn {
+    padding: 12px 30px;
+    background-color: #00aaff; /* Full blue background */
+    color: white; /* White text color */
+    border: 2px solid #00aaff; /* Blue border matching the background */
+    border-radius: 5px; /* Optional: rounded corners */
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.buy-btn:hover {
+    background-color: white; /* Changes to white on hover */
+    color: #00aaff; /* Blue text on hover */
+    border: 2px solid #00aaff; /* Blue border remains on hover */
+}
+/* Image Styles */
+.image-content img {
+    max-width: 700px; /* Adjust image size */
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Add shadow for effect */
+}
+
+/* Media Query for Responsive Design */
+@media (max-width: 768px) {
+    section.main-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .text-content {
+        max-width: 100%;
+    }
+
+    .image-content img {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .account-btn {
+        margin-top: 20px;
+    }
+}
